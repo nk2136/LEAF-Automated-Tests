@@ -5,11 +5,12 @@ type FormQueryResponse map[int]FormQueryRecord
 type FormQueryData map[string]any
 
 type FormQuery_Orgchart_Employee struct {
-	FirstName  string `json:"firstName"`
-	LastName   string `json:"lastName"`
-	MiddleName string `json:"middleName"`
-	Email      string `json:"email"`
-	UserName   string `json:"userName"`
+	FirstName         string  `json:"firstName"`
+	LastName          string  `json:"lastName"`
+	MiddleName        string  `json:"middleName"`
+	Email             string  `json:"email"`
+	UserName          string  `json:"userName"`
+	EmpUID            int     `json:"empUID"`
 }
 
 type FormQueryRecord struct {
