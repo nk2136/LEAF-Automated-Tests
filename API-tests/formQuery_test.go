@@ -2,10 +2,11 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/url"
-	"strings"
 	"strconv"
+	"strings"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -248,9 +249,9 @@ func TestFormQuery_FindTwoSteps(t *testing.T) {
 /* post a new employee to an orgchart format question and then confirm expected values on orgchart property */
 func TestFormQuery_Employee_Format__Orgchart_Has_Expected_Values(t *testing.T) {
 	mock_orgchart_employee := FormQuery_Orgchart_Employee{
-		EmpUID: 201,
-		FirstName: "Ramon",
-		LastName: "Watsica",
+		EmpUID:     201,
+		FirstName:  "Ramon",
+		LastName:   "Watsica",
 		MiddleName: "Yundt",
 		Email:      "Ramon.Watsica@fake-email.com",
 		UserName:   "vtrycxbethany",
@@ -522,5 +523,45 @@ func TestForm_VerifyInitiator(t *testing.T) {
 
 	if formQueryResponse[5].UserName == "" {
 		t.Error("UserName not set")
+	}
+}
+
+/* Test special characters saved in the title of a record and contents of a record */
+func TestFormQuery_Special_Characters(t *testing.T) {
+
+	theTestString := "This is an otter 🦦 this is a smiley 😀"
+	theTestTitleString := "TestForm_Special_Characters😀"
+
+	// Setup conditions
+	postData := url.Values{}
+	postData.Set("CSRFToken", CsrfToken)
+	postData.Set("numform_5ea07", "1")
+	postData.Set("title", theTestTitleString)
+	postData.Set("3", theTestString)
+	postData.Set("8", "1")
+	postData.Set("9", "112")
+
+	// TODO: streamline this
+	pRes, _ := client.PostForm(RootURL+`api/form/new`, postData)
+	bodyBytes, _ := io.ReadAll(pRes.Body)
+	var response string
+	json.Unmarshal(bodyBytes, &response)
+	recordID, err := strconv.Atoi(string(response))
+
+	if err != nil {
+		t.Errorf("Could not create record for TestFormQuery_Special_Characters: " + err.Error())
+	}
+
+	res, _ := getFormQuery(RootURL + fmt.Sprintf(`api/form/query/?q={"terms":[{"id":"recordID","operator":"=","match":"%d","gate":"AND"},{"id":"deleted","operator":"=","match":0,"gate":"AND"}],"joins":[],"sort":{},"getData":["3"]}&x-filterData=recordID,title`, recordID))
+
+	if res[recordID].Title != theTestTitleString {
+		t.Errorf(`Title %v Does not match %v.`, res[recordID].Title, theTestTitleString)
+	}
+
+	for tKey, tVal := range res[recordID].S1 {
+
+		if tKey == "id3" && tVal != theTestString {
+			t.Errorf(`Text %v Does not match %v.`, tVal, theTestString)
+		}
 	}
 }
