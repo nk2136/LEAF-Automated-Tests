@@ -1,58 +1,60 @@
 ---
-name: "📝 Test Case"
-about: "Use this template to create a structured test case with steps, checkboxes, expected results, and execution tracking."
+name: "Test Case"
+about: "Use this template to document test cases with structured steps, expected results, and execution tracking."
 title: "[Test Case] - [Enter Test Case Name]"
 labels: ["testcase"]
 assignees: []
 ---
 
-## 📝 Test Case: [Enter Test Case Name]
+## Test Case: [Enter Test Case Name]
 
-### **📌 Test Scenario**
-[Describe the test scenario briefly]
-
----
-
-### **✅ Test Steps (Check each step upon completion)**
-- [ ] **Step 1:** Navigate to the login page.
-- [ ] **Step 2:** Enter valid username and password.
-- [ ] **Step 3:** Click the "Login" button.
-- [ ] **Step 4:** Verify user is redirected to the dashboard.
+### Test Scenario
+[Provide a brief description of the test scenario]
 
 ---
 
-### **🎯 Expected Result**
-- [List expected outcomes]
-- [Include specific validations]
+### Test Steps  
+(Select each step when completed)
+
+- [ ] Step 1: Navigate to the login page.  
+- [ ] Step 2: Enter a valid username and password.  
+- [ ] Step 3: Click the "Login" button.  
+- [ ] Step 4: Verify that the user is redirected to the dashboard.  
 
 ---
 
-### **🔍 Actual Result**
-- [Tester will update after execution]
-- [Mention any unexpected behaviors]
+### Expected Result
+[Describe the expected outcome of this test case]
 
 ---
 
-### **📊 Test Execution Result (Mark One)**
-- [ ] ✅ **Test Passed**
-- [ ] ❌ **Test Failed**
-- [ ] ⏳ **In Progress**
-- [ ] 🚫 **Blocked**
+### Actual Result
+[Update after execution, including any deviations from the expected result]
 
 ---
 
-### **🔗 Linked Issues**
-- [#Issue_Number] (For related defects or dependencies)
+### Test Execution Status  
+(Select one based on the outcome)
+
+- [ ] Test Passed  
+- [ ] Test Failed  
+- [ ] In Progress  
+- [ ] Blocked  
 
 ---
 
-### **📂 Environment Details**
-- **Browser:** [Chrome/Firefox/Edge]
-- **OS:** [Windows/Linux/Mac]
-- **Test Type:** [UI/API/Performance/Regression]
-- **Priority:** [High/Medium/Low]
+### Linked Issues  
+[Reference any related defects or dependencies, if applicable]
 
 ---
 
-### **📸 Attachments (if any)**
-- [Upload screenshots/logs if a test fails]
+### Environment Details  
+- **Browser:** [Chrome, Firefox, Edge]  
+- **Operating System:** [Windows, Linux, Mac]  
+- **Test Type:** [UI, API, Performance, Regression]  
+- **Priority:** [High, Medium, Low]  
+
+---
+
+### Attachments  
+[Upload screenshots or logs if needed for debugging]
