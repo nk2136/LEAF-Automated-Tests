@@ -36,10 +36,11 @@ assignees: []
 ### Test Execution Status  
 (Select one based on the outcome)
 
-- [ ] Test Passed  
-- [ ] Test Failed  
-- [ ] In Progress  
-- [ ] Blocked  
+- [ ] **✔ Test Passed**  
+- [ ] **❌ Test Failed**  
+- [ ] **⏳ In Progress**  
+- [ ] **🚫 Blocked**  
+
 
 ---
 
